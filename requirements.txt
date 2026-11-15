@@ -1,0 +1,9 @@
+anthropic
+scikit-learn
+pandas
+matplotlib
+fastapi
+uvicorn
+streamlit
+pytest
+openpyxl
