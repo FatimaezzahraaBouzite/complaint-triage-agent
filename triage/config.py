@@ -4,7 +4,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = Path(os.getenv("TRIAGE_DB", ROOT / "data" / "complaints.db"))
-RAW_DIR = ROOT / "data" / "raw"   # the monthly complaints_* files exported from the CFPB website
+RAW_DIR = ROOT / "data" / "raw"   # the CCDB_Export*.zip files from the CFPB narratives archive
+# Default start date. The CFPB renamed several products in 2023 (for example "Credit card or prepaid card"
+# became "Credit card"); staying after that keeps a single taxonomy. Override with --since.
+DATE_MIN = "2024-01-01"
 TRACE_PATH = ROOT / "logs" / "traces.jsonl"
 
 # Scope: the complaint desk of a bank / lender / payments company. Credit-bureau complaints

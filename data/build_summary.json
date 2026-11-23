@@ -1,0 +1,186 @@
+{
+  "built_at": "2026-11-22T19:17:35",
+  "fingerprint": "0d4dfff563be",
+  "per_product_cap": 3000,
+  "test_fraction": 0.15,
+  "products_in_scope": [
+    "Credit card",
+    "Checking or savings account",
+    "Debt collection",
+    "Mortgage",
+    "Money transfer, virtual currency, or money service",
+    "Student loan",
+    "Vehicle loan or lease",
+    "Payday loan, title loan, personal loan, or advance loan"
+  ],
+  "since": "2024-01-01",
+  "per_file_cap": 3000,
+  "files_read": [
+    {
+      "file": "CCDB_Export_10_March_2025_through_April_2025.zip",
+      "rows": 803073,
+      "narratives": 210147,
+      "kept": 39541,
+      "after_file_sampling": 19482
+    },
+    {
+      "file": "CCDB_Export_11_May_2025_through_June_2025.zip",
+      "rows": 827343,
+      "narratives": 219632,
+      "kept": 42032,
+      "after_file_sampling": 19167
+    },
+    {
+      "file": "CCDB_Export_12_July_2025_through_August_2025.zip",
+      "rows": 968761,
+      "narratives": 234404,
+      "kept": 46739,
+      "after_file_sampling": 19326
+    },
+    {
+      "file": "CCDB_Export_13_September_2025_through_October_2025.zip",
+      "rows": 1023636,
+      "narratives": 157821,
+      "kept": 41891,
+      "after_file_sampling": 18410
+    },
+    {
+      "file": "CCDB_Export_14_November_2025_through_December_2025.zip",
+      "rows": 1009132,
+      "narratives": 134641,
+      "kept": 36750,
+      "after_file_sampling": 18625
+    },
+    {
+      "file": "CCDB_Export_15_January_2026_through_February_2026.zip",
+      "rows": 1038383,
+      "narratives": 34351,
+      "kept": 31556,
+      "after_file_sampling": 17473
+    },
+    {
+      "file": "CCDB_Export_16_March_2026.zip",
+      "rows": 614945,
+      "narratives": 21640,
+      "kept": 20010,
+      "after_file_sampling": 14083
+    },
+    {
+      "file": "CCDB_Export_17_April_2026.zip",
+      "rows": 618293,
+      "narratives": 21052,
+      "kept": 19412,
+      "after_file_sampling": 14526
+    },
+    {
+      "file": "CCDB_Export_18_May_2026.zip",
+      "rows": 619940,
+      "narratives": 17528,
+      "kept": 16024,
+      "after_file_sampling": 13384
+    },
+    {
+      "file": "CCDB_Export_21_August_2026.zip",
+      "rows": 667140,
+      "narratives": 1,
+      "kept": 0,
+      "after_file_sampling": 0
+    },
+    {
+      "file": "CCDB_Export_5_September_2023_through_March_2024.zip",
+      "rows": 945532,
+      "narratives": 318804,
+      "kept": 41869,
+      "after_file_sampling": 19931
+    },
+    {
+      "file": "CCDB_Export_6_April_2024_through_July_2024.zip",
+      "rows": 839903,
+      "narratives": 276332,
+      "kept": 60170,
+      "after_file_sampling": 21451
+    },
+    {
+      "file": "CCDB_Export_7_August_2024_through_October_2024.zip",
+      "rows": 824514,
+      "narratives": 229944,
+      "kept": 45070,
+      "after_file_sampling": 19800
+    },
+    {
+      "file": "CCDB_Export_8_November_2024_through_December_2024.zip",
+      "rows": 591058,
+      "narratives": 154916,
+      "kept": 30348,
+      "after_file_sampling": 16532
+    },
+    {
+      "file": "CCDB_Export_9_January_2025_through_February_2025.zip",
+      "rows": 811019,
+      "narratives": 265405,
+      "kept": 92762,
+      "after_file_sampling": 19320
+    }
+  ],
+  "files_not_opened": [
+    "CCDB_Export_1_December_2011_through_April_2018.zip",
+    "CCDB_Export_2_May_2018_through_April_2021.zip",
+    "CCDB_Export_3_May_2021_through_October_2022.zip",
+    "CCDB_Export_4_November_2022_through_August_2023.zip"
+  ],
+  "files_skipped": [],
+  "normalize_steps": [
+    {
+      "label": "rows received from the files",
+      "count": 251510
+    },
+    {
+      "label": "narrative of at least 50 characters",
+      "count": 251510
+    },
+    {
+      "label": "closed with a known outcome",
+      "count": 251510
+    },
+    {
+      "label": "in the products listed in config.PRODUCTS",
+      "count": 251510
+    },
+    {
+      "label": "after removing duplicates",
+      "count": 251510
+    },
+    {
+      "label": "after capping at 3,000 per product",
+      "count": 24000
+    }
+  ],
+  "complaints": 24000,
+  "products": 8,
+  "issues": 79,
+  "companies": 1215,
+  "date_min": "2024-01-01",
+  "date_max": "2026-05-31",
+  "split": {
+    "test": {
+      "complaints": 3600,
+      "date_min": "2026-03-01",
+      "date_max": "2026-05-31"
+    },
+    "train": {
+      "complaints": 20400,
+      "date_min": "2024-01-01",
+      "date_max": "2026-03-01"
+    }
+  },
+  "per_product": {
+    "Checking or savings account": 3000,
+    "Credit card": 3000,
+    "Debt collection": 3000,
+    "Money transfer, virtual currency, or money service": 3000,
+    "Mortgage": 3000,
+    "Payday loan, title loan, personal loan, or advance loan": 3000,
+    "Student loan": 3000,
+    "Vehicle loan or lease": 3000
+  }
+}

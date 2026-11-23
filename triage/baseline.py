@@ -3,7 +3,9 @@ TF-IDF + logistic regression for (1) product and (2) 'will this end in monetary 
 
   python -m triage.baseline     # scores on the full held-out test set -> analysis/baseline_report.md
 """
+import json
 import sqlite3
+from pathlib import Path
 
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -39,10 +41,18 @@ def relief_scores(y_true, y_pred):
 
 
 def main(db_path=None, out=config.ROOT / "analysis" / "baseline_report.md"):
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
     train, test = load("train", db_path), load("test", db_path)
     product, relief = fit(train)
     pred = product.predict(test["narrative"])
     y = (test["outcome"] == "monetary_relief").astype(int)
+    prod_acc = accuracy_score(test["product"], pred)
+    majority = (test["product"] == train["product"].mode()[0]).mean()
+    result = {"train": len(train), "test": len(test), "product_accuracy": round(float(prod_acc), 3),
+              "majority_product_accuracy": round(float(majority), 3), "monetary_relief_rate": round(float(y.mean()), 3),
+              "monetary_relief": relief_scores(y, relief.predict(test["narrative"])) if relief is not None else None}
+    out.with_name("baseline.json").write_text(json.dumps(result, indent=2))
     lines = ["# Baselines on the held-out test set", "",
              f"- Train: {len(train):,} complaints. Test: {len(test):,} (most recent).",
              f"- **Product accuracy (TF-IDF + LR):** {accuracy_score(test['product'], pred):.3f} "
@@ -57,3 +67,5 @@ def main(db_path=None, out=config.ROOT / "analysis" / "baseline_report.md"):
 
 if __name__ == "__main__":
     main()
+    from report.readme import update_quietly
+    update_quietly()

@@ -1,0 +1,277 @@
+{
+  "complaints": 24000,
+  "date_min": "2024-01-01",
+  "date_max": "2026-05-31",
+  "companies": 1215,
+  "products": 8,
+  "issues": 79,
+  "outcome_mix": {
+    "explanation": 0.8627,
+    "non_monetary_relief": 0.0778,
+    "monetary_relief": 0.0595
+  },
+  "median_words": 165,
+  "p90_words": 445,
+  "reading_wpm": 238,
+  "reading_hours": 375.8,
+  "reading_minutes_per_complaint": 0.94,
+  "priority_floor": {
+    "low": 0.5265,
+    "medium": 0.3485,
+    "high": 0.125
+  },
+  "risk_signals": {
+    "fraud_or_identity_theft": 0.2555,
+    "legal_threat": 0.0843,
+    "financial_hardship": 0.0775,
+    "older_american": 0.0754,
+    "servicemember": 0.1213
+  },
+  "by_product": [
+    {
+      "name": "Checking or savings account",
+      "complaints": 3000.0,
+      "median_words": 164.0,
+      "monetary_relief": 0.129,
+      "non_monetary_relief": 0.0637,
+      "timely": 0.9933
+    },
+    {
+      "name": "Credit card",
+      "complaints": 3000.0,
+      "median_words": 172.0,
+      "monetary_relief": 0.1827,
+      "non_monetary_relief": 0.1307,
+      "timely": 0.9953
+    },
+    {
+      "name": "Debt collection",
+      "complaints": 3000.0,
+      "median_words": 113.0,
+      "monetary_relief": 0.002,
+      "non_monetary_relief": 0.2537,
+      "timely": 0.99
+    },
+    {
+      "name": "Money transfer, virtual currency, or money service",
+      "complaints": 3000.0,
+      "median_words": 148.0,
+      "monetary_relief": 0.07,
+      "non_monetary_relief": 0.0383,
+      "timely": 0.978
+    },
+    {
+      "name": "Mortgage",
+      "complaints": 3000.0,
+      "median_words": 224.0,
+      "monetary_relief": 0.018,
+      "non_monetary_relief": 0.0253,
+      "timely": 0.9903
+    },
+    {
+      "name": "Payday loan, title loan, personal loan, or advance loan",
+      "complaints": 3000.0,
+      "median_words": 160.0,
+      "monetary_relief": 0.041,
+      "non_monetary_relief": 0.034,
+      "timely": 0.9707
+    },
+    {
+      "name": "Student loan",
+      "complaints": 3000.0,
+      "median_words": 170.0,
+      "monetary_relief": 0.0047,
+      "non_monetary_relief": 0.0157,
+      "timely": 0.8887
+    },
+    {
+      "name": "Vehicle loan or lease",
+      "complaints": 3000.0,
+      "median_words": 181.0,
+      "monetary_relief": 0.0283,
+      "non_monetary_relief": 0.0613,
+      "timely": 0.9897
+    }
+  ],
+  "top_issues": [
+    {
+      "name": "Dealing with your lender or servicer",
+      "complaints": 1898.0,
+      "median_words": 175.0,
+      "monetary_relief": 0.0068,
+      "non_monetary_relief": 0.0137,
+      "timely": 0.8614
+    },
+    {
+      "name": "Managing an account",
+      "complaints": 1625.0,
+      "median_words": 175.0,
+      "monetary_relief": 0.1182,
+      "non_monetary_relief": 0.0757,
+      "timely": 0.9902
+    },
+    {
+      "name": "Trouble during payment process",
+      "complaints": 1607.0,
+      "median_words": 215.0,
+      "monetary_relief": 0.0168,
+      "non_monetary_relief": 0.0249,
+      "timely": 0.9919
+    },
+    {
+      "name": "Attempts to collect debt not owed",
+      "complaints": 1436.0,
+      "median_words": 115.0,
+      "monetary_relief": 0.0021,
+      "non_monetary_relief": 0.2772,
+      "timely": 0.9951
+    },
+    {
+      "name": "Managing the loan or lease",
+      "complaints": 900.0,
+      "median_words": 192.5,
+      "monetary_relief": 0.0489,
+      "non_monetary_relief": 0.0633,
+      "timely": 0.9867
+    },
+    {
+      "name": "Other transaction problem",
+      "complaints": 877.0,
+      "median_words": 105.0,
+      "monetary_relief": 0.0513,
+      "non_monetary_relief": 0.0171,
+      "timely": 0.992
+    },
+    {
+      "name": "Problem with a purchase shown on your statement",
+      "complaints": 818.0,
+      "median_words": 215.0,
+      "monetary_relief": 0.3105,
+      "non_monetary_relief": 0.0538,
+      "timely": 0.9927
+    },
+    {
+      "name": "Fraud or scam",
+      "complaints": 800.0,
+      "median_words": 179.0,
+      "monetary_relief": 0.0725,
+      "non_monetary_relief": 0.0312,
+      "timely": 0.9862
+    },
+    {
+      "name": "Incorrect information on your report",
+      "complaints": 793.0,
+      "median_words": 114.0,
+      "monetary_relief": 0.0063,
+      "non_monetary_relief": 0.1375,
+      "timely": 0.9836
+    },
+    {
+      "name": "Repossession",
+      "complaints": 792.0,
+      "median_words": 171.5,
+      "monetary_relief": 0.0202,
+      "non_monetary_relief": 0.0568,
+      "timely": 0.9861
+    },
+    {
+      "name": "Charged fees or interest you didn't expect",
+      "complaints": 739.0,
+      "median_words": 155.0,
+      "monetary_relief": 0.0582,
+      "non_monetary_relief": 0.0271,
+      "timely": 0.9648
+    },
+    {
+      "name": "Written notification about debt",
+      "complaints": 730.0,
+      "median_words": 58.0,
+      "monetary_relief": 0.0014,
+      "non_monetary_relief": 0.2726,
+      "timely": 0.989
+    }
+  ],
+  "top_companies": [
+    {
+      "name": "Block, Inc.",
+      "complaints": 1071.0,
+      "median_words": 102.0,
+      "monetary_relief": 0.0047,
+      "non_monetary_relief": 0.0,
+      "timely": 0.972
+    },
+    {
+      "name": "MOHELA",
+      "complaints": 1062.0,
+      "median_words": 170.0,
+      "monetary_relief": 0.0094,
+      "non_monetary_relief": 0.0085,
+      "timely": 0.7721
+    },
+    {
+      "name": "JPMORGAN CHASE & CO.",
+      "complaints": 862.0,
+      "median_words": 203.0,
+      "monetary_relief": 0.0661,
+      "non_monetary_relief": 0.0638,
+      "timely": 1.0
+    },
+    {
+      "name": "WELLS FARGO & COMPANY",
+      "complaints": 801.0,
+      "median_words": 183.0,
+      "monetary_relief": 0.1136,
+      "non_monetary_relief": 0.0799,
+      "timely": 1.0
+    },
+    {
+      "name": "CAPITAL ONE FINANCIAL CORPORATION",
+      "complaints": 762.0,
+      "median_words": 164.5,
+      "monetary_relief": 0.0696,
+      "non_monetary_relief": 0.0761,
+      "timely": 1.0
+    },
+    {
+      "name": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+      "complaints": 646.0,
+      "median_words": 198.0,
+      "monetary_relief": 0.3173,
+      "non_monetary_relief": 0.0356,
+      "timely": 0.9954
+    },
+    {
+      "name": "Paypal Holdings, Inc",
+      "complaints": 607.0,
+      "median_words": 183.0,
+      "monetary_relief": 0.1417,
+      "non_monetary_relief": 0.1697,
+      "timely": 1.0
+    },
+    {
+      "name": "Nelnet, Inc.",
+      "complaints": 603.0,
+      "median_words": 155.0,
+      "monetary_relief": 0.0,
+      "non_monetary_relief": 0.0,
+      "timely": 1.0
+    },
+    {
+      "name": "CITIBANK, N.A.",
+      "complaints": 563.0,
+      "median_words": 191.0,
+      "monetary_relief": 0.2789,
+      "non_monetary_relief": 0.1829,
+      "timely": 1.0
+    },
+    {
+      "name": "Chime Financial Inc",
+      "complaints": 447.0,
+      "median_words": 148.0,
+      "monetary_relief": 0.0582,
+      "non_monetary_relief": 0.0112,
+      "timely": 1.0
+    }
+  ],
+  "figure": "relief_by_product.png"
+}

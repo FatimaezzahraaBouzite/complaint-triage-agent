@@ -11,10 +11,12 @@ and with two references on the same complaints: majority class and TF-IDF + logi
 import argparse
 import json
 import shutil
+import re
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
-from triage import baseline, config
+from triage import baseline, config, data
 from triage.agent import TriageAgent
 from triage.llm import get_llm
 from triage.tools import Toolbox, minimum_priority, risk_flags
@@ -76,7 +78,10 @@ def main(per_product=10, llm=None, db_path=None, out_dir=HERE, seed=11):
     print(f"\n{len(wrong)} product errors (first 5):")
     for r in wrong[:5]:
         print(f"  {r['complaint_id']}: predicted {r['pred_product']!r}, actual {r['true_product']!r}")
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "results.json").write_text(json.dumps({"summary": summary, "runs": runs}, indent=2))
+    save_run(summary, runs, per_product, seed, data.fingerprint(db_path), out_dir)
     a, m, l = summary["agent"], summary["majority_baseline"], summary["logreg_baseline"]
     (out_dir / "results.md").write_text("\n".join([
         f"# Eval on {n} held-out real complaints ({summary['model']})", "",
@@ -89,7 +94,23 @@ def main(per_product=10, llm=None, db_path=None, out_dir=HERE, seed=11):
     return summary
 
 
+def save_run(summary, runs, per_product, seed, fingerprint, out_dir=HERE, created_at=None):
+    """Keep every run in evals/runs/ (committed to git), so the README and the run history can be rebuilt."""
+    created_at = created_at or datetime.now().isoformat(timespec="seconds")
+    record = {"created_at": created_at, "model": summary["model"], "uses_llm": not str(summary["model"]).startswith("knn"),
+              "per_product": per_product, "seed": seed, "data_fingerprint": fingerprint, "summary": summary, "runs": runs}
+    folder = Path(out_dir) / "runs"
+    folder.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^a-z0-9]+", "-", str(summary["model"]).lower()).strip("-")
+    path = folder / f"{created_at[:19].replace(':', '').replace('-', '')}_{slug}_n{summary['complaints']}.json"
+    path.write_text(json.dumps(record, indent=2))
+    print(f"Saved this run to {path}")
+    return path
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--per-product", type=int, default=10)
     main(per_product=p.parse_args().per_product)
+    from report.readme import update_quietly
+    update_quietly()

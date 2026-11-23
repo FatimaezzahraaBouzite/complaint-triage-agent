@@ -1,0 +1,1 @@
+"""Builds README.md from the results the pipeline saves (python -m report.readme)."""

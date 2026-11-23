@@ -2,6 +2,7 @@
 
   python -m analysis.eda     # -> analysis/eda_report.md, analysis/relief_by_product.png
 """
+import json
 import sqlite3
 from pathlib import Path
 
@@ -28,6 +29,8 @@ def pct(s):
 
 
 def main(db_path=None, out=OUT):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(db_path or config.DB_PATH)
     df = pd.read_sql("SELECT * FROM complaints", con)
     con.close()
@@ -67,6 +70,27 @@ def main(db_path=None, out=OUT):
             ["", "## Top 10 companies", ""] + md(table("company", 10))
     (out / "eda_report.md").write_text("\n".join(lines) + "\n")
 
+    def records(by, top=None):  # same tables as above, with raw numbers, for the README
+        g = df.groupby(by).agg(complaints=("complaint_id", "size"), median_words=("words", "median"),
+                               monetary_relief=("money", "mean"), non_monetary_relief=("nonmoney", "mean"),
+                               timely=("timely", "mean")).sort_values("complaints", ascending=False)
+        g = g.head(top) if top else g
+        return [{"name": k, **{c: round(float(v), 4) for c, v in row.items()}} for k, row in g.iterrows()]
+
+    summary = {
+        "complaints": int(len(df)), "date_min": df["date_received"].min(), "date_max": df["date_received"].max(),
+        "companies": int(df["company"].nunique()), "products": int(df["product"].nunique()), "issues": int(df["issue"].nunique()),
+        "outcome_mix": {k: round(float(v), 4) for k, v in df["outcome"].value_counts(normalize=True).items()},
+        "median_words": int(df["words"].median()), "p90_words": int(df["words"].quantile(.9)),
+        "reading_wpm": READING_WPM, "reading_hours": round(float(read_hours), 1),
+        "reading_minutes_per_complaint": round(float(df["words"].mean() / READING_WPM), 2),
+        "priority_floor": {k: round(float(v), 4) for k, v in df["floor"].value_counts(normalize=True).items()},
+        "risk_signals": {k: round(float(v), 4) for k, v in flag_share.items()},
+        "by_product": records("product"), "top_issues": records("issue", 12), "top_companies": records("company", 10),
+        "figure": "relief_by_product.png",
+    }
+    (out / "eda_summary.json").write_text(json.dumps(summary, indent=2))
+
     g = df.groupby("product")[["money", "nonmoney"]].mean().sort_values("money")
     fig, ax = plt.subplots(figsize=(9, 4.5))
     ax.barh(g.index.str.slice(0, 38), g["money"] * 100, color="#2a78d6", label="Monetary relief")
@@ -84,3 +108,5 @@ def main(db_path=None, out=OUT):
 
 if __name__ == "__main__":
     main()
+    from report.readme import update_quietly
+    update_quietly()
